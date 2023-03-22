@@ -29,15 +29,13 @@ public class MainActivity extends AppCompatActivity {
     public void saveText(View view) {
         FileOutputStream fos = null;
         try {
-            EditText textBox = (EditText) view.findViewById(R.id.editor);
+            EditText textBox = (EditText) findViewById(R.id.editor);
             String text = textBox.getText().toString();
-
 
             fos = openFileOutput(FILE_NAME, MODE_PRIVATE);
             fos.write(text.getBytes(StandardCharsets.UTF_8));
             Toast.makeText(this, "Файл успешно сохранён", Toast.LENGTH_LONG).show();
         } catch (FileNotFoundException e) {
-            throw new RuntimeException(e);
             e.printStackTrace();
             Toast.makeText(this, e.getMessage(), Toast.LENGTH_LONG).show();
         } catch (IOException e) {
@@ -58,9 +56,9 @@ public class MainActivity extends AppCompatActivity {
         }
     }
     // Открытие файла
-    public void inputText (View view) {
+    public void openText (View view) {
         FileInputStream fin = null;
-        TextView textView = (TextView) view.findViewById(R.id.text);
+        TextView textView = (TextView) findViewById(R.id.text);
 
         try {
             fin = openFileInput(FILE_NAME);
